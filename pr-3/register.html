@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudentHub - Register</title>
+  <style>
+    /* ==================== Styles ==================== */
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      background: #0077cc;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    form label {
+      display: block;
+      margin: 0.5rem 0 0.2rem;
+    }
+
+    form input, form select, form button {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    form button {
+      background: #0077cc;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #005999;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: -0.5rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>StudentHub Registration</h1>
+  </header>
+
+  <div class="container">
+    <h2>Create Account</h2>
+    <form id="registrationForm" novalidate>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      <div class="error" id="nameError"></div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      <div class="error" id="emailError"></div>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" minlength="6" required>
+      <div class="error" id="passwordError"></div>
+
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required>
+      <div class="error" id="confirmPasswordError"></div>
+
+      <label for="course">Select Course</label>
+      <select id="course" name="course" required>
+        <option value="">--Select--</option>
+        <option>Computer Science</option>
+        <option>Data Science</option>
+        <option>AI & ML</option>
+      </select>
+      <div class="error" id="courseError"></div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 StudentHub | Parth Chauhan ID: D25CE149</p>
+  </footer>
+
+  <script>
+    // ==================== Frontend Validation ====================
+    const form = document.getElementById('registrationForm');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // prevent form submission
+
+      // Clear previous errors
+      document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+      let isValid = true;
+
+      // Name validation
+      const name = document.getElementById('name').value.trim();
+      if (name === '') {
+        document.getElementById('nameError').textContent = 'Name is required';
+        isValid = false;
+      }
+
+      // Email validation
+      const email = document.getElementById('email').value.trim();
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (email === '') {
+        document.getElementById('emailError').textContent = 'Email is required';
+        isValid = false;
+      } else if (!email.match(emailPattern)) {
+        document.getElementById('emailError').textContent = 'Enter a valid email';
+        isValid = false;
+      }
+
+      // Password validation
+      const password = document.getElementById('password').value;
+      if (password.length < 6) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+        isValid = false;
+      }
+
+      // Confirm Password
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      if (confirmPassword !== password) {
+        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+        isValid = false;
+      }
+
+      // Course selection
+      const course = document.getElementById('course').value;
+      if (course === '') {
+        document.getElementById('courseError').textContent = 'Please select a course';
+        isValid = false;
+      }
+
+      // If all fields are valid
+      if (isValid) {
+        alert('Registration successful!');
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>

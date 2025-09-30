@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudentHub Login</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f4f4f4; margin:0; padding:0; }
+  .container { max-width: 400px; margin: 5rem auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+  h2 { text-align: center; margin-bottom: 1rem; }
+  form label { display:block; margin:0.5rem 0 0.2rem; }
+  form input, form button { width:100%; padding:0.7rem; margin-bottom:1rem; border-radius:5px; border:1px solid #ccc; }
+  form button { background:#0077cc; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; }
+  form button:hover { background:#005999; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Login to StudentHub</h2>
+  <form action="authenticate.php" method="POST">
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required placeholder="Enter your email">
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" required placeholder="Enter your password">
+
+    <label>
+      <input type="checkbox" name="remember"> Remember Me
+    </label>
+
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+</body>
+</html>

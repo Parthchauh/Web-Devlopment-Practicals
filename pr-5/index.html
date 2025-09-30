@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudentHub Portal - Events & Profiles</title>
+  <style>
+    /* ================= Styles ================= */
+    body {
+      font-family: 'Open Sans', Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      background: #0077cc;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* Events Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    th {
+      background: #0077cc;
+      color: #fff;
+    }
+
+    /* Student Profiles Cards */
+    .profiles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .profile-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .profile-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .profiles {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>StudentHub Portal</h1>
+  </header>
+
+  <div class="container">
+
+    <!-- Events List -->
+    <h2>Upcoming Events</h2>
+    <table id="eventsTable">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Date</th>
+          <th>Location</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Events will be dynamically inserted -->
+      </tbody>
+    </table>
+
+    <!-- Student Profiles -->
+    <h2>Student Profiles</h2>
+    <div class="profiles" id="studentProfiles">
+      <!-- Profiles will be dynamically inserted -->
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2025 StudentHub | Parth Chauhan ID: D25CE149</p>
+  </footer>
+
+  <script>
+    /* ================== Script ================== */
+
+    // ---------------- Events Array ----------------
+    const events = [
+      { name: "AI Workshop", date: "2025-10-10", location: "Auditorium A" },
+      { name: "Hackathon", date: "2025-11-15", location: "Lab 3" },
+      { name: "Seminar on Data Science", date: "2025-12-05", location: "Conference Room" }
+    ];
+
+    // Display events in table
+    const eventsTableBody = document.querySelector("#eventsTable tbody");
+    events.forEach(event => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${event.name}</td><td>${event.date}</td><td>${event.location}</td>`;
+      eventsTableBody.appendChild(row);
+    });
+
+    // ---------------- Student Profiles ----------------
+    const studentJSON = `[
+      {"name":"Alice Johnson","id":"D25CE101","course":"Computer Science","photo":"https://i.pravatar.cc/80?img=1"},
+      {"name":"Bob Smith","id":"D25CE102","course":"Data Science","photo":"https://i.pravatar.cc/80?img=2"},
+      {"name":"Charlie Lee","id":"D25CE103","course":"AI & ML","photo":"https://i.pravatar.cc/80?img=3"}
+    ]`;
+
+    // Parse JSON
+    const students = JSON.parse(studentJSON);
+
+    // Display student profiles
+    const profilesContainer = document.getElementById("studentProfiles");
+    students.forEach(student => {
+      const card = document.createElement("div");
+      card.classList.add("profile-card");
+      card.innerHTML = `
+        <img src="${student.photo}" alt="${student.name}">
+        <h3>${student.name}</h3>
+        <p>ID: ${student.id}</p>
+        <p>Course: ${student.course}</p>
+      `;
+      profilesContainer.appendChild(card);
+    });
+
+  </script>
+
+</body>
+</html>
